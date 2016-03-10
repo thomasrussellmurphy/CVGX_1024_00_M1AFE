@@ -25,6 +25,7 @@ timing
 *.bak
 *.cdf
 *.cmp
+*.ddb
 *.done
 *.dpf
 *.eqn
