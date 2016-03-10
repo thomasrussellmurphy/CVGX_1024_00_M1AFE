@@ -9,6 +9,8 @@
 # *.vhd
 # *.v
 # *.sdc
+*_bb.v
+*_inst.v
 
 # ignore Quartus II generated folders
 *_sim
