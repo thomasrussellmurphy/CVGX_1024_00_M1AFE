@@ -252,6 +252,8 @@ assign LEDG[ 0 ] = cvpll_lock;
 // Assigning clock to reworked CDCE footprint that will go to the AFE
 assign HSMC_CLKOUT0 = cvpll_clk125;
 
+assign FPGA_REF_CLK_P = cvpll_clk125;
+assign FPGA_REF_CLK_N = ~cvpll_clk125;
 
 // ADC LVDS interfacing
 wire [ 4: 0 ] adc_aggregate_lvds;
@@ -295,29 +297,25 @@ pll_50_to_125 pll (
                 .locked( cvpll_lock )
               );
 
-sync_iobuf fpga_ref_out (
-             .datain( cvpll_clk125 ),
-             .dataout( FPGA_REF_CLK_P ),
-             .dataout_b( FPGA_REF_CLK_N )
-           );
-
 lvds_5_rx adc_lvds_rx (
+            .pll_areset( ~cvpll_lock ),
             .rx_in ( adc_aggregate_lvds ),
             .rx_inclock ( adc_lvds_clk ),
             .rx_locked ( adc_lvds_lock ),
             .rx_out ( adc_parallel_out ),
             .rx_outclock ( rx_outclock_sig )
           );
-
+// Acts like loopback
 assign tx_inclock_sig = rx_outclock_sig;
 assign dac_parallel_in = adc_parallel_out;
 
 lvds_5_tx dac_lvds_tx (
+            .pll_areset( ~cvpll_lock ),
             .tx_in ( dac_parallel_in ),
             .tx_inclock ( tx_inclock_sig ),
-            .tx_locked ( tx_locked_sig ),
+            .tx_locked ( dac_lvds_lock ),
             .tx_out ( dac_aggregate_lvds ),
-            .tx_outclock ( dac_lvds_lock )
+            .tx_outclock ( dac_lvds_clk )
           );
 
 sync_iobuf sync_buf (

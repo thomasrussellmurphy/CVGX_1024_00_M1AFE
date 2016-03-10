@@ -38,12 +38,14 @@
 `timescale 1 ps / 1 ps
 // synopsys translate_on
 module lvds_5_tx (
+	pll_areset,
 	tx_in,
 	tx_inclock,
 	tx_locked,
 	tx_out,
 	tx_outclock);
 
+	input	  pll_areset;
 	input	[29:0]  tx_in;
 	input	  tx_inclock;
 	output	  tx_locked;
@@ -58,12 +60,12 @@ module lvds_5_tx (
 	wire  tx_outclock = sub_wire2;
 
 	altlvds_tx	ALTLVDS_TX_component (
+				.pll_areset (pll_areset),
 				.tx_in (tx_in),
 				.tx_inclock (tx_inclock),
 				.tx_locked (sub_wire0),
 				.tx_out (sub_wire1),
 				.tx_outclock (sub_wire2),
-				.pll_areset (1'b0),
 				.sync_inclock (1'b0),
 				.tx_coreclock (),
 				.tx_data_reset (1'b0),
@@ -89,10 +91,10 @@ module lvds_5_tx (
 		ALTLVDS_TX_component.multi_clock = "OFF",
 		ALTLVDS_TX_component.number_of_channels = 5,
 		ALTLVDS_TX_component.outclock_alignment = "EDGE_ALIGNED",
-		ALTLVDS_TX_component.outclock_divide_by = 1,
+		ALTLVDS_TX_component.outclock_divide_by = 2,
 		ALTLVDS_TX_component.outclock_duty_cycle = 50,
 		ALTLVDS_TX_component.outclock_multiply_by = 1,
-		ALTLVDS_TX_component.outclock_phase_shift = 167,
+		ALTLVDS_TX_component.outclock_phase_shift = 334,
 		ALTLVDS_TX_component.outclock_resource = "Dual-Regional clock",
 		ALTLVDS_TX_component.output_data_rate = 750,
 		ALTLVDS_TX_component.pll_compensation_mode = "AUTO",
@@ -120,8 +122,8 @@ endmodule
 // Retrieval info: PRIVATE: CNX_EXT_PLL STRING "OFF"
 // Retrieval info: PRIVATE: CNX_LE_SERDES STRING "OFF"
 // Retrieval info: PRIVATE: CNX_NUM_CHANNEL NUMERIC "5"
-// Retrieval info: PRIVATE: CNX_OUTCLOCK_DIVIDE_BY NUMERIC "1"
-// Retrieval info: PRIVATE: CNX_PLL_ARESET NUMERIC "0"
+// Retrieval info: PRIVATE: CNX_OUTCLOCK_DIVIDE_BY NUMERIC "2"
+// Retrieval info: PRIVATE: CNX_PLL_ARESET NUMERIC "1"
 // Retrieval info: PRIVATE: CNX_PLL_FREQ STRING "125.000000"
 // Retrieval info: PRIVATE: CNX_PLL_PERIOD STRING "8.000"
 // Retrieval info: PRIVATE: CNX_REG_INOUT NUMERIC "1"
@@ -154,10 +156,10 @@ endmodule
 // Retrieval info: CONSTANT: MULTI_CLOCK STRING "OFF"
 // Retrieval info: CONSTANT: NUMBER_OF_CHANNELS NUMERIC "5"
 // Retrieval info: CONSTANT: OUTCLOCK_ALIGNMENT STRING "EDGE_ALIGNED"
-// Retrieval info: CONSTANT: OUTCLOCK_DIVIDE_BY NUMERIC "1"
+// Retrieval info: CONSTANT: OUTCLOCK_DIVIDE_BY NUMERIC "2"
 // Retrieval info: CONSTANT: OUTCLOCK_DUTY_CYCLE NUMERIC "50"
 // Retrieval info: CONSTANT: OUTCLOCK_MULTIPLY_BY NUMERIC "1"
-// Retrieval info: CONSTANT: OUTCLOCK_PHASE_SHIFT NUMERIC "167"
+// Retrieval info: CONSTANT: OUTCLOCK_PHASE_SHIFT NUMERIC "334"
 // Retrieval info: CONSTANT: OUTCLOCK_RESOURCE STRING "Dual-Regional clock"
 // Retrieval info: CONSTANT: OUTPUT_DATA_RATE NUMERIC "750"
 // Retrieval info: CONSTANT: PLL_COMPENSATION_MODE STRING "AUTO"
@@ -168,6 +170,8 @@ endmodule
 // Retrieval info: CONSTANT: USE_EXTERNAL_PLL STRING "OFF"
 // Retrieval info: CONSTANT: USE_NO_PHASE_SHIFT STRING "ON"
 // Retrieval info: CONSTANT: VOD_SETTING NUMERIC "0"
+// Retrieval info: USED_PORT: pll_areset 0 0 0 0 INPUT NODEFVAL "pll_areset"
+// Retrieval info: CONNECT: @pll_areset 0 0 0 0 pll_areset 0 0 0 0
 // Retrieval info: USED_PORT: tx_in 0 0 30 0 INPUT NODEFVAL "tx_in[29..0]"
 // Retrieval info: CONNECT: @tx_in 0 0 30 0 tx_in 0 0 30 0
 // Retrieval info: USED_PORT: tx_inclock 0 0 0 0 INPUT NODEFVAL "tx_inclock"

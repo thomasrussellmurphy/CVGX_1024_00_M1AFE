@@ -1,4 +1,5 @@
 lvds_5_tx	lvds_5_tx_inst (
+	.pll_areset ( pll_areset_sig ),
 	.tx_in ( tx_in_sig ),
 	.tx_inclock ( tx_inclock_sig ),
 	.tx_locked ( tx_locked_sig ),

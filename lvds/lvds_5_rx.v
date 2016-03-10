@@ -38,12 +38,14 @@
 `timescale 1 ps / 1 ps
 // synopsys translate_on
 module lvds_5_rx (
+	pll_areset,
 	rx_in,
 	rx_inclock,
 	rx_locked,
 	rx_out,
 	rx_outclock);
 
+	input	  pll_areset;
 	input	[4:0]  rx_in;
 	input	  rx_inclock;
 	output	  rx_locked;
@@ -58,6 +60,7 @@ module lvds_5_rx (
 	wire  rx_outclock = sub_wire2;
 
 	altlvds_rx	ALTLVDS_RX_component (
+				.pll_areset (pll_areset),
 				.rx_in (rx_in),
 				.rx_inclock (rx_inclock),
 				.rx_locked (sub_wire0),
@@ -65,7 +68,6 @@ module lvds_5_rx (
 				.rx_outclock (sub_wire2),
 				.dpa_pll_cal_busy (),
 				.dpa_pll_recal (1'b0),
-				.pll_areset (1'b0),
 				.pll_phasecounterselect (),
 				.pll_phasedone (1'b1),
 				.pll_phasestep (),
@@ -174,7 +176,7 @@ endmodule
 // Retrieval info: PRIVATE: Use_Common_Rx_Tx_Plls NUMERIC "1"
 // Retrieval info: PRIVATE: Use_Data_Align NUMERIC "0"
 // Retrieval info: PRIVATE: Use_Lock NUMERIC "1"
-// Retrieval info: PRIVATE: Use_Pll_Areset NUMERIC "0"
+// Retrieval info: PRIVATE: Use_Pll_Areset NUMERIC "1"
 // Retrieval info: PRIVATE: Use_Rawperror NUMERIC "0"
 // Retrieval info: PRIVATE: Use_Tx_Out_Phase NUMERIC "0"
 // Retrieval info: CONSTANT: BUFFER_IMPLEMENTATION STRING "RAM"
@@ -224,6 +226,8 @@ endmodule
 // Retrieval info: CONSTANT: USE_EXTERNAL_PLL STRING "OFF"
 // Retrieval info: CONSTANT: USE_NO_PHASE_SHIFT STRING "ON"
 // Retrieval info: CONSTANT: X_ON_BITSLIP STRING "ON"
+// Retrieval info: USED_PORT: pll_areset 0 0 0 0 INPUT NODEFVAL "pll_areset"
+// Retrieval info: CONNECT: @pll_areset 0 0 0 0 pll_areset 0 0 0 0
 // Retrieval info: USED_PORT: rx_in 0 0 5 0 INPUT NODEFVAL "rx_in[4..0]"
 // Retrieval info: CONNECT: @rx_in 0 0 5 0 rx_in 0 0 5 0
 // Retrieval info: USED_PORT: rx_inclock 0 0 0 0 INPUT NODEFVAL "rx_inclock"

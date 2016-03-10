@@ -5,7 +5,7 @@
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CGXFC5C6F27C7
 set_global_assignment -name TOP_LEVEL_ENTITY "CVGX_1024_00_M1AFE"
-set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0"
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 13.0
 set_global_assignment -name LAST_QUARTUS_VERSION 15.0.2
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "12:38:34 MARCH 10,2016"
 set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
@@ -16,7 +16,7 @@ set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 8_H6
 # CLOCK
 #============================================================
 set_location_assignment PIN_U12 -to CLOCK_125_p
-set_instance_assignment -name IO_STANDARD "LVDS" -to CLOCK_125_p
+set_instance_assignment -name IO_STANDARD LVDS -to CLOCK_125_p
 set_location_assignment PIN_R20 -to CLOCK_50_B5B
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK_50_B5B
 set_location_assignment PIN_N20 -to CLOCK_50_B6A

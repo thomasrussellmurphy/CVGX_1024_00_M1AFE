@@ -1,4 +1,5 @@
 lvds_5_rx	lvds_5_rx_inst (
+	.pll_areset ( pll_areset_sig ),
 	.rx_in ( rx_in_sig ),
 	.rx_inclock ( rx_inclock_sig ),
 	.rx_locked ( rx_locked_sig ),
