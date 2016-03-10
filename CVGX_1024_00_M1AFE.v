@@ -241,13 +241,20 @@ output HSMC_CLKOUT2_N;
 //=======================================================
 assign UNUSED = 32'b0;
 
-// For master internal PLL
-wire cvpll_lock;
-wire cvpll_clk125;
-wire cvpll_reset;
+// For master data internal PLL
+wire cvdatapll_lock;
+wire cvdatapll_clk125;
+wire cvdatapll_reset;
 
-assign cvpll_reset = KEY[ 0 ];
-assign LEDG[ 0 ] = cvpll_lock;
+// For master config internal PLL
+wire cvconfigpll_lock;
+wire cvconfigpll_clk16;
+wire cvconfigpll_reset;
+
+assign cvdatapll_reset = KEY[ 0 ];
+assign cvconfigpll_reset = KEY[ 0 ];
+assign LEDG[ 0 ] = cvdatapll_lock;
+assign LEDG[ 1 ] = cvconfigpll_lock;
 
 // Assigning clock to reworked CDCE footprint that will go to the AFE
 assign HSMC_CLKOUT0 = cvpll_clk125;
@@ -290,37 +297,31 @@ assign LEDR[ 0 ] = dac_lvds_lock;
 //=======================================================
 //  Structural coding
 //=======================================================
-pll_50_to_125 pll (
+pll_50_to_125 data_pll (
                 .refclk( CLOCK_50_B7A ),
-                .rst( cvpll_reset ),
-                .outclk_0( cvpll_clk125 ),
-                .locked( cvpll_lock )
+                .rst( cvdatapll_reset ),
+                .outclk_0( cvdatapll_clk125 ),
+                .locked( cvdatapll_lock )
               );
 
-lvds_5_rx adc_lvds_rx (
-            .pll_areset( ~cvpll_lock ),
-            .rx_in ( adc_aggregate_lvds ),
-            .rx_inclock ( adc_lvds_clk ),
-            .rx_locked ( adc_lvds_lock ),
-            .rx_out ( adc_parallel_out ),
-            .rx_outclock ( rx_outclock_sig )
-          );
+pll_50_to_16 config_pll(
+               .refclk( CLOCK_50_B7A ),
+               .rst( cvconfigpll_reset ),
+               .outclk_0( cvconfigpll_clk16 ),
+               .locked( cvconfigpll_lock )
+             );
+
 // Acts like loopback
-assign tx_inclock_sig = rx_outclock_sig;
+assign adc_parallel_out = adc_aggregate_lvds;
 assign dac_parallel_in = adc_parallel_out;
+assign dac_aggregate_lvds = dac_parallel_in;
 
-lvds_5_tx dac_lvds_tx (
-            .pll_areset( ~cvpll_lock ),
-            .tx_in ( dac_parallel_in ),
-            .tx_inclock ( tx_inclock_sig ),
-            .tx_locked ( dac_lvds_lock ),
-            .tx_out ( dac_aggregate_lvds ),
-            .tx_outclock ( dac_lvds_clk )
+assign dac_lvds_clk = adc_lvds_clk;
+
+sync_flip sync_controller (
+            .clk( cvconfigpll_clk16 ),
+            .reset_n( cvconfigpll_lock ),
+            .sync( SYNCIN_P )
           );
-
-sync_iobuf sync_buf (
-             .datain( 1'b0 ),
-             .dataout( SYNCIN_P )
-           );
 
 endmodule
