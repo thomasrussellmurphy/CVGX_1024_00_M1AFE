@@ -251,8 +251,8 @@ wire cvconfigpll_lock;
 wire cvconfigpll_clk16;
 wire cvconfigpll_reset;
 
-assign cvdatapll_reset = KEY[ 0 ];
-assign cvconfigpll_reset = KEY[ 0 ];
+assign cvdatapll_reset = ~KEY[ 0 ];
+assign cvconfigpll_reset = ~KEY[ 0 ];
 assign LEDG[ 0 ] = cvdatapll_lock;
 assign LEDG[ 1 ] = cvconfigpll_lock;
 
