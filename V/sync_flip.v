@@ -1,7 +1,8 @@
+// Module to provide a wait period before activating the sync
 module sync_flip
        (
-         input clk,
-         input reset_n,
+         input clk, reset_n,
+         input enable,
          output sync
        );
 
@@ -15,13 +16,19 @@ always @( posedge clk or negedge reset_n ) begin
   begin
     counter <= 20'hFFFFF;
     sync_reg <= 1'b0;
-  end
-  else
+  end else
   begin
-    if ( counter != 20'b0 )
+    if ( !enable )
+    begin
+      counter <= 20'hFFFFF;
+    end else if ( counter != 20'b0 )
     begin
       counter <= counter - 1'b1;
+    end else
+    begin
+      counter <= 20'b0;
     end
+    // Single pulse at the end of the count
     sync_reg <= ( counter == 20'b1 );
   end
 end

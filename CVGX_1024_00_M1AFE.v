@@ -323,10 +323,7 @@ assign dac_aggregate_lvds = dac_parallel_in;
 
 assign dac_lvds_clk = adc_lvds_clk;
 
-sync_flip sync_controller (
-            .clk( cvconfigpll_clk16 ),
-            .reset_n( cvconfigpll_lock ),
-            .sync( SYNCIN_P )
-          );
+// Disable sync, for now
+assign SYNCIN_P = 1'b0;
 
 endmodule
