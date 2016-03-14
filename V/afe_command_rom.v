@@ -15,7 +15,7 @@ module afe_command_rom
 reg [ 7: 0 ] address_reg;
 
 // Combinatorial register, won't cause an additional cycle of delay
-reg [23:0] command_reg;
+reg [ 23: 0 ] command_reg;
 assign command = command_reg;
 
 // ROM controller
@@ -55,6 +55,8 @@ always @( * ) begin
       command_reg = 24'h1_33A_82;
     // Done
     8'h06:
+      command_reg = 24'h0_000_00;
+    default:
       command_reg = 24'h0_000_00;
   endcase
 end
