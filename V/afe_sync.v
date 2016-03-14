@@ -1,5 +1,5 @@
 // Module to provide a wait period before activating the sync
-module sync_flip
+module afe_sync
        (
          input clk, reset_n,
          input enable,
