@@ -113,8 +113,7 @@ always @( state, start_transaction, shift_out_count, enable ) begin
       if ( start_transaction & enable )
       begin
         next_state = load_state;
-      end
-      else
+      end else
       begin
         next_state = idle_state;
       end
@@ -128,8 +127,7 @@ always @( state, start_transaction, shift_out_count, enable ) begin
       if ( shift_out_count == 1'b0 )
       begin
         next_state = delay_state;
-      end
-      else
+      end else
       begin
         // A single cycle to ensure deadtime between transactions
         next_state = shifting_state;

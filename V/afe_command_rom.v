@@ -23,8 +23,7 @@ always @( posedge clk or negedge reset_n ) begin
   if ( ~reset_n )
   begin
     address_reg <= 5'b0;
-  end
-  else
+  end else
   begin
     address_reg <= address;
   end
