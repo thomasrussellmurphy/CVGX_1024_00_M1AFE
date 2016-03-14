@@ -1,0 +1,40 @@
+Important Registers
+
+5.3 Chip Control Registers
+
+CONFIG107 has SOFTWARE_RESET bit for whole device, including this register
+0x000, set value 0x02
+Causes reset to occur
+
+CONFIG111 has LVDS mode and SDOUT mode configuration
+0x20A, set value 0x0E
+REG_LVDS_TX = 1
+REG_LVDS_RX = 1
+WHAT_IS_SDOUT<1:0> = 10
+
+5.5 Clocking Control Registers
+
+CONFIG117A and CONFIG117B have control of duty cycle correction on ADC channels
+Since ADC_CLK is >65MSps, these bits should be set
+0xDB, set value 0x01
+0xF2, set value 0x08
+
+5.7 LVDS Tx Input Interface Registers
+
+CONFIG125 has data mode and format options for Tx DAC input
+0x30B, set value 0x80
+TWOWIRE_TX = 1
+
+CONFIG126 has override control and data encoding options
+0x30C, set value 0x04
+MATER_OVERRIDE_TX = 1
+
+5.8 LVDS Rx Output Interface Registers
+
+CONFIG128 has output stream modification for Rx ADC output
+0x337, not going to be set, yet
+
+CONFIG131 has override control and data encoding options
+0x33A, set value 0x82
+MASTER_OVERRIDE_RX = 1
+TWOWIRE_RX = 1
