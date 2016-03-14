@@ -16,8 +16,8 @@ WHAT_IS_SDOUT<1:0> = 10
 
 CONFIG117A and CONFIG117B have control of duty cycle correction on ADC channels
 Since ADC_CLK is >65MSps, these bits should be set
-0xDB, set value 0x01
-0xF2, set value 0x08
+0x0DB, set value 0x01
+0x0F2, set value 0x08
 
 5.7 LVDS Tx Input Interface Registers
 
@@ -27,7 +27,7 @@ TWOWIRE_TX = 1
 
 CONFIG126 has override control and data encoding options
 0x30C, set value 0x04
-MATER_OVERRIDE_TX = 1
+MASTER_OVERRIDE_TX = 1
 
 5.8 LVDS Rx Output Interface Registers
 
