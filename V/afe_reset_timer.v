@@ -17,7 +17,7 @@ assign done = done_reg;
 always @( posedge clk or negedge reset_n ) begin
   if ( ~reset_n )
   begin
-    counter <= 6'hFFFF;
+    counter <= 16'hFFFF;
     device_reset_reg <= 1'b1;  // Default to resetting device
     done_reg <= 1'b0;
   end else

@@ -615,6 +615,7 @@ set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 set_instance_assignment -name SLEW_RATE 1 -to FPGA_REF_CLK_N
 set_instance_assignment -name SLEW_RATE 1 -to FPGA_REF_CLK_P
+set_global_assignment -name VERILOG_FILE V/afe_command_controller.v
 set_global_assignment -name VERILOG_FILE V/afe_command_rom.v
 set_global_assignment -name VERILOG_FILE V/afe_sync.v
 set_global_assignment -name VERILOG_FILE V/afe_serial_out.v

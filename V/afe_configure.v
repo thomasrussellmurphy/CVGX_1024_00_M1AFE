@@ -10,13 +10,15 @@ module afe_configure
          output device_sync,
          output configure_done
        );
-//
+
 assign pdn = 1'b0;
 
 wire reset_done;
-wire start_transaction_done;
+wire transaction_done;
 wire start_transaction;
 wire command_transactions_done;
+
+assign configure_done = command_transactions_done;
 
 wire [ 23: 0 ] rom_command;
 wire [ 19: 0 ] afe_command;
@@ -38,7 +40,18 @@ afe_sync sync
            .sync( device_sync )
          );
 
-// State machine to operate commands
+afe_command_controller command_controller
+                       (
+                         .clk( clk ),
+                         .reset_n( reset_n ),
+                         .enable( reset_done ),
+                         .serial_ready( transaction_done ),
+                         .controller_command( rom_command ),
+                         .rom_address( rom_address ),
+                         .afe_command( afe_command ),
+                         .start_transaction( start_transaction ),
+                         .done( command_transactions_done )
+                       );
 
 afe_command_rom command_rom
                 (

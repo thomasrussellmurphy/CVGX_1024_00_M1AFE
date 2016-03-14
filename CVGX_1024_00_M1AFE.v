@@ -251,6 +251,9 @@ wire cvconfigpll_lock;
 wire cvconfigpll_clk16;
 wire cvconfigpll_reset;
 
+// For AFE config indication
+wire afe_config_done;
+
 assign cvdatapll_reset = ~KEY[ 0 ];
 assign cvconfigpll_reset = ~KEY[ 0 ];
 assign LEDG[ 0 ] = cvdatapll_lock;
@@ -266,6 +269,9 @@ assign FPGA_REF_CLK_N = ~cvdatapll_clk125;
 assign AFE_SCLK = cvconfigpll_clk16;
 assign ADRF_CLK = cvconfigpll_clk16;
 assign CDCE_SCLK = cvconfigpll_clk16;
+
+// Indicate when AFE configuration is done
+assign LEDR[ 0 ] = afe_config_done;
 
 // ADC LVDS interfacing
 wire [ 4: 0 ] adc_aggregate_lvds;
@@ -297,7 +303,7 @@ assign {
     DAC_FCLKIN_P
   } = dac_aggregate_lvds;
 assign DAC_DCLKIN_P = dac_lvds_clk;
-assign LEDR[ 0 ] = dac_lvds_lock;
+assign LEDR[ 8 ] = dac_lvds_lock;
 
 //=======================================================
 //  Structural coding
@@ -323,7 +329,18 @@ assign dac_aggregate_lvds = dac_parallel_in;
 
 assign dac_lvds_clk = adc_lvds_clk;
 
-// Disable sync, for now
-assign SYNCIN_P = 1'b0;
+// Instantiate configuration controller
+afe_configure configuration_master
+              (
+                .clk( cvconfigpll_clk16 ),
+                .reset_n( cvconfigpll_lock ),
+                .miso( AFE_SDOUT ),
+                .device_reset( AFE_RESET ),
+                .pdn( AFE_PDN ),
+                .cs_n( AFE_SEN ),
+                .mosi( AFE_SDATA ),
+                .device_sync( SYNCIN_P ),
+                .configure_done( afe_config_done )
+              );
 
 endmodule
