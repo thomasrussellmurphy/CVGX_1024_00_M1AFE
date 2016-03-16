@@ -27,7 +27,7 @@ begin
 end
 
 // ROM controller
-always @( posedge clk or negedge reset_n ) begin
+always @( posedge clk ) begin
   command_reg <= rom[ address ];
 end
 
