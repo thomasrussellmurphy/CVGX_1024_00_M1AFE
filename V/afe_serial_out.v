@@ -17,7 +17,7 @@ parameter idle_state = 3'd0,
           delay_state = 3'd3;
 
 reg cs_reg, transaction_done_reg;
-assign cs_n = cs_reg;
+assign cs_n = ~cs_reg;  // Active low conversion
 assign transaction_done = transaction_done_reg;
 
 // State machine state storage
@@ -30,7 +30,7 @@ reg enable_shift, load_shift;
 // Manual instantiation of the lpm_shiftreg
 lpm_shiftreg shiftreg20 (
                .clock ( clk ),
-               .aclr ( reset_n ),
+               .aclr ( ~reset_n ),
                .data ( parallel_input ),
                .load ( load_shift ),
                .enable ( enable_shift ),
@@ -70,7 +70,8 @@ always @( posedge clk or negedge reset_n ) begin
         load_shift <= 1'b0;
         shift_out_count <= 5'd19;
 
-        transaction_done_reg <= 1'b1;
+        // disable done-ness when starting
+        transaction_done_reg <= ~start_transaction;
         cs_reg <= 1'b0;
       end
       load_state:
@@ -124,7 +125,7 @@ always @( state, start_transaction, shift_out_count, enable ) begin
     end
     shifting_state:
     begin
-      if ( shift_out_count == 1'b0 )
+      if ( shift_out_count == 1'b1 )
       begin
         next_state = delay_state;
       end else

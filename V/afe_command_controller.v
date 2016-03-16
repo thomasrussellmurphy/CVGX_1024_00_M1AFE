@@ -18,11 +18,12 @@ parameter
 // State machine parameterized states
 parameter
   init_state = 3'd0,
-  fetch_state = 3'd1,
-  trigger_state = 3'd2,
-  increment_state = 3'd3,
-  wait_state = 3'd4,
-  done_state = 3'd5;
+  wait_state = 3'd1,
+  fetch_state = 3'd2,
+  trigger_state = 3'd3,
+  delay_state = 3'd4,
+  increment_state = 3'd5,
+  done_state = 3'd6;
 
 // State machine state storage
 reg [ 2: 0 ] state, next_state;
@@ -94,7 +95,12 @@ always @( state, enable, serial_ready, command ) begin
     end
     trigger_state:
     begin
-      // Always transition to increment address
+      // Always transition to delay before incrementing
+      next_state = delay_state;
+    end
+    delay_state:
+    begin
+      // Always transition to increment
       next_state = increment_state;
     end
     increment_state:
