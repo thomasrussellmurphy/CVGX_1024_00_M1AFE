@@ -1,0 +1,18 @@
+// We start at the top of the memory
+@00
+// Turn on LVDS mode for Tx and Rx, SDOUT as output
+120A0E
+// Turn on duty cycle correction for ADC channel A
+10DB01
+// Turn on duty cycle correction for ADC channel B
+10F208
+// Set Tx interface to two-wire
+130B80
+// Set MASTER_OVERRIDE_TX on
+130C04
+// Set MASTER_OVERRIDE_RX and Rx interface to two-wire
+133A82
+// Done
+000000
+
+// All remaining space will be filled with zeros
