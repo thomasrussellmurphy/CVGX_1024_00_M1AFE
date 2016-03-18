@@ -1,10 +1,4 @@
-// Handwritten ROM to hold the commands to send to the AFE
-// Format:
-//   [ 23: 20 ] command to state machine
-//      0000: stop, no further valid commands
-//      0001: valid command to send
-//      others: reserved
-//   [ 19: 0 ] 20-bit command to be sent to the AFE over SPI
+// ROM initializer to provide instructions/data to the configuration system
 module afe_command_rom
        (
          input clk, reset_n,

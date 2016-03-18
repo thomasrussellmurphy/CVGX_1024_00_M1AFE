@@ -1,3 +1,10 @@
+// Format:
+//   [ 23: 20 ] command to state machine
+//      0000: stop, no further valid commands
+//      0001: valid command to send
+//      others: reserved
+//   [ 19: 0 ] 20-bit command to be sent to the AFE over SPI
+
 // We start at the top of the memory
 @00
 // Turn on LVDS mode for Tx and Rx, SDOUT as output
