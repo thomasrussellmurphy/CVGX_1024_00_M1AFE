@@ -1,0 +1,49 @@
+// Format:
+//   [ 23: 20 ] command to state machine
+//      0000: stop, no further valid commands
+//      0001: valid command to send
+//      others: reserved
+//   [ 19: 0 ] 20-bit command to be sent to the AFE over SPI
+
+// We start at the top of the memory
+@00
+// Turn on LVDS mode for Tx and Rx, SDOUT as output
+// 120A0E
+000100100000101000001110
+
+// Turn on duty cycle correction for ADC channel A
+// 10DB01
+000100001101101100000001
+
+// Turn on duty cycle correction for ADC channel B
+// 10F208
+000100001111001000001000
+
+// Set Tx interface to two-wire
+// 130B80
+000100110000101110000000
+
+// Set MASTER_OVERRIDE_TX on
+// 130C04
+000100110000110000000100
+
+// Set MASTER_OVERRIDE_RX and Rx interface to two-wire
+// 133A82
+000100110011101010000010
+
+// Diagnostic
+// 100000
+000100000000000000000000
+// 155555
+000101010101010101010101
+// 199999
+000110011001100110011001
+// 1AAAAA
+000110101010101010101010
+
+// Done
+// 000000
+000000000000000000000000
+000000000000000000000000
+
+// All remaining space will be filled with zeros

@@ -17,7 +17,7 @@ initial
 begin
   // Read hex memory from file
   // Relative path from this Verilog file
-  $readmemh( "../rom_data/afe_configuration_rom_data.txt", rom );
+  $readmemb( "../rom_data/afe_configuration_rom_bindata.txt", rom );
 end
 
 // ROM controller
