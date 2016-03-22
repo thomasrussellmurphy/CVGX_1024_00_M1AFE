@@ -19,6 +19,16 @@
 130C04
 // Set MASTER_OVERRIDE_RX and Rx interface to two-wire
 133A82
+
+// Set read mode on configuration registers bank 0x300
+130001
+// Read out CONFIG125, 0x30B
+130B00
+// Read out CONFIG131, 0x33A
+133A00
+// Exit read mode on bank 0x300
+130001
+
 // Done
 000000
 
