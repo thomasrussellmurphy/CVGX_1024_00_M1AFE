@@ -7,7 +7,7 @@ module afe_command_rom
        );
 
 // Memory variable
-reg [ 23: 0 ] rom[ 7: 0 ];
+reg [ 23: 0 ] rom[ 255: 0 ];
 
 reg [ 23: 0 ] command_reg;
 assign command = command_reg;
