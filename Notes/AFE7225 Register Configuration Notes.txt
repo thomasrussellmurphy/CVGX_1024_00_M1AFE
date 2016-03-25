@@ -18,11 +18,11 @@ CONFIG61 has decimation filter enable and loopback enable
 0x165, set value 0xC0
 Activates analog loopback mode from DAC
 
-CONFIG63 has DAC powerdown settings
+CONFIG63 has ADC powerdown settings
 0x167, set value 0x1F
 Causes whole receive chain to power down
 0x167, set value 0x1E
-Causes only the channels A and B, outputting mid-code
+Causes only the channels A and B to power down, outputting mid-code
 0x167, set value 0x00
 Power up whole receive chain
 

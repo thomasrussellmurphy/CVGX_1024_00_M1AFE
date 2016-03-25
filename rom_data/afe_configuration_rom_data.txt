@@ -7,6 +7,15 @@
 
 // We start at the top of the memory
 @00
+
+// Causes whole transmit chain to power down
+1031F
+// Causes whole receive chain to power down
+1671F
+
+// Write 0x00 to chip control as a delay, won't reset the chip
+100000
+
 // Turn on LVDS mode for Tx and Rx, SDOUT as output
 120A0E
 // Turn on duty cycle correction for ADC channel A
@@ -28,6 +37,11 @@
 133A00
 // Exit read mode on bank 0x300
 130001
+
+// Power up whole transmit chain and keep FIFO enabled
+10300
+// Power up whole receive chain
+16700
 
 // Done
 000000
