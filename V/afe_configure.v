@@ -11,14 +11,13 @@ module afe_configure
          output configure_done
        );
 
-assign pdn = 1'b0;
-
 wire reset_done;
 wire transaction_done;
 wire start_transaction;
 wire command_transactions_done;
 
 assign configure_done = command_transactions_done;
+assign pdn = ~configure_done;
 
 wire [ 23: 0 ] rom_command;
 wire [ 19: 0 ] afe_command;
