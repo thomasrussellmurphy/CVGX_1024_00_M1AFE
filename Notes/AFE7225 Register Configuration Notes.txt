@@ -1,5 +1,31 @@
 Important Registers
 
+5.1 Transmit Digital Signal Chain Registers
+
+CONFIG0 has DAC powerdown settings
+0x103, set value 0x1F
+Causes whole transmit chain to power down
+0x103, set value 0x00
+Power up whole transmit chain and keep FIFO enabled
+
+CONFIG2 has digital loopback control
+0x105, set value 0x02
+Activates digital loopback mode from ADC, requires DAC_DCLKIN to be active
+
+5.2 Receive Digital Signal Chain Registers
+
+CONFIG61 has decimation filter enable and loopback enable
+0x165, set value 0xC0
+Activates analog loopback mode from DAC
+
+CONFIG63 has DAC powerdown settings
+0x167, set value 0x1F
+Causes whole receive chain to power down
+0x167, set value 0x1E
+Causes only the channels A and B, outputting mid-code
+0x167, set value 0x00
+Power up whole receive chain
+
 5.3 Chip Control Registers
 
 CONFIG107 has SOFTWARE_RESET bit for whole device, including this register
@@ -32,7 +58,10 @@ MASTER_OVERRIDE_TX = 1
 5.8 LVDS Rx Output Interface Registers
 
 CONFIG128 has output stream modification for Rx ADC output
-0x337, not going to be set, yet
+0x337, set value 0x00
+Sets no output pattern, normal operation
+0x337, set value 0x07
+Sets sync-check pattern: 111000111000 in 2-wire mode
 
 CONFIG131 has override control and data encoding options
 0x33A, set value 0x82
