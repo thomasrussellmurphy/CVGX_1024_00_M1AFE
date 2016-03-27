@@ -9,9 +9,9 @@
 @00
 
 // Causes whole transmit chain to power down
-1031F
+11031F
 // Causes whole receive chain to power down
-1671F
+11671F
 
 // Write 0x00 to chip control as a delay, won't reset the chip
 100000
@@ -39,9 +39,9 @@
 130001
 
 // Power up whole transmit chain and keep FIFO enabled
-10300
+110300
 // Power up whole receive chain
-16700
+116700
 
 // Done
 000000
