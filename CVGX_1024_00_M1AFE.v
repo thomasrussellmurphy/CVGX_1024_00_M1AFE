@@ -251,6 +251,12 @@ wire cvconfigpll_lock;
 wire cvconfigpll_clk16;
 wire cvconfigpll_reset;
 
+// For LVDS internal PLL
+wire lvds_serial_clock;
+wire lvds_enable_clock;
+wire lvds_data_clock;
+wire lvdspll_lock;
+
 // For AFE config indication
 wire afe_config_done;
 
@@ -258,6 +264,7 @@ assign cvdatapll_reset = ~KEY[ 0 ];
 assign cvconfigpll_reset = ~KEY[ 0 ];
 assign LEDG[ 0 ] = cvdatapll_lock;
 assign LEDG[ 1 ] = cvconfigpll_lock;
+assign LEDG[ 2 ] = lvdspll_lock;
 
 // Assigning clock to reworked CDCE footprint that will go to the AFE
 assign HSMC_CLKOUT0 = cvdatapll_clk125;
@@ -277,7 +284,7 @@ assign LEDR[ 0 ] = afe_config_done;
 wire [ 4: 0 ] adc_aggregate_lvds;
 wire adc_lvds_clk;
 wire [ 29: 0 ] adc_parallel_out;
-wire adc_lvds_lock;
+reg [ 29: 0 ] adc_parallel_q;
 
 assign adc_aggregate_lvds = {
          ADCB_DATA1_P,
@@ -287,13 +294,11 @@ assign adc_aggregate_lvds = {
          ADC_FCLKOUT_P
        };
 assign adc_lvds_clk = ADC_DCLKOUT_P;
-assign LEDR[ 9 ] = adc_lvds_lock;
 
 // DAC LVDS interfacing
 wire [ 4: 0 ] dac_aggregate_lvds;
 wire dac_lvds_clk;
 wire [ 29: 0 ] dac_parallel_in;
-wire dac_lvds_lock;
 
 assign {
     DACB_DATA1_P,
@@ -303,7 +308,6 @@ assign {
     DAC_FCLKIN_P
   } = dac_aggregate_lvds;
 assign DAC_DCLKIN_P = dac_lvds_clk;
-assign LEDR[ 8 ] = dac_lvds_lock;
 
 //=======================================================
 //  Structural coding
@@ -322,12 +326,37 @@ pll_50_to_16 config_pll(
                .locked( cvconfigpll_lock )
              );
 
-// Acts like loopback
-assign adc_parallel_out = adc_aggregate_lvds;
-assign dac_parallel_in = adc_parallel_out;
-assign dac_aggregate_lvds = dac_parallel_in;
+// LVDS connections
+lvds_6x_125Mbps_pll ldvs_pll(
+                      .refclk( adc_lvds_clk ),
+                      .rst( cvconfigpll_reset ),
+                      .outclk_0( lvds_serial_clock ),
+                      .outclk_1( lvds_enable_clock ),
+                      .outclk_2( lvds_data_clock ),
+                      .locked( lvdspll_lock )
+                    );
 
-assign dac_lvds_clk = adc_lvds_clk;
+lvds_ext_5_rx lvds_ext_5_rx_inst (
+                .rx_enable ( lvds_enable_clock ),
+                .rx_in ( adc_aggregate_lvds ),
+                .rx_inclock ( lvds_serial_clock ),
+                .rx_out ( adc_parallel_out )
+              );
+
+lvds_ext_5_tx lvds_ext_5_tx_inst (
+                .tx_enable ( lvds_enable_clock ),
+                .tx_in ( dac_parallel_in ),
+                .tx_inclock ( lvds_serial_clock ),
+                .tx_out ( dac_aggregate_lvds ),
+                .tx_outclock ( dac_lvds_clk )
+              );
+
+// Acts like loopback
+always @( posedge lvds_data_clock )
+begin
+  adc_parallel_q <= adc_parallel_out;
+end
+assign dac_parallel_in = adc_parallel_q;
 
 // Instantiate configuration controller
 afe_configure configuration_master
