@@ -615,19 +615,6 @@ set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 set_instance_assignment -name SLEW_RATE 1 -to FPGA_REF_CLK_N
 set_instance_assignment -name SLEW_RATE 1 -to FPGA_REF_CLK_P
-set_global_assignment -name SIGNALTAP_FILE config_diagnostic.stp
-set_global_assignment -name VERILOG_FILE V/afe_command_controller.v
-set_global_assignment -name VERILOG_FILE V/afe_command_rom.v
-set_global_assignment -name VERILOG_FILE V/afe_sync.v
-set_global_assignment -name VERILOG_FILE V/afe_serial_out.v
-set_global_assignment -name VERILOG_FILE V/afe_reset_timer.v
-set_global_assignment -name VERILOG_FILE V/afe_configure.v
-set_global_assignment -name QIP_FILE pll/pll_50_to_125.qip
-set_global_assignment -name QIP_FILE lvds/lvds_5_tx.qip
-set_global_assignment -name QIP_FILE lvds/lvds_5_rx.qip
-set_global_assignment -name VERILOG_FILE CVGX_1024_00_M1AFE.v
-set_global_assignment -name SDC_FILE CVGX_1024_00_M1AFE.SDC
-set_global_assignment -name QIP_FILE pll/pll_50_to_16.qip
 set_global_assignment -name ENABLE_SIGNALTAP ON
 set_global_assignment -name USE_SIGNALTAP_FILE config_diagnostic.stp
 set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id auto_signaltap_0
@@ -716,9 +703,22 @@ set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[24] -
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[27] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[31] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=1024" -section_id auto_signaltap_0
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name SLD_FILE db/config_diagnostic_auto_stripped.stp
-set_global_assignment -name QIP_FILE lvds/lvds_ext_5_rx.qip
-set_global_assignment -name QIP_FILE lvds/lvds_ext_5_tx.qip
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name QIP_FILE lvds_ext/lvds_ext_5_tx.qip
+set_global_assignment -name QIP_FILE lvds_ext/lvds_ext_5_rx.qip
+set_global_assignment -name SIGNALTAP_FILE config_diagnostic.stp
+set_global_assignment -name VERILOG_FILE V/afe_command_controller.v
+set_global_assignment -name VERILOG_FILE V/afe_command_rom.v
+set_global_assignment -name VERILOG_FILE V/afe_sync.v
+set_global_assignment -name VERILOG_FILE V/afe_serial_out.v
+set_global_assignment -name VERILOG_FILE V/afe_reset_timer.v
+set_global_assignment -name VERILOG_FILE V/afe_configure.v
+set_global_assignment -name QIP_FILE pll/pll_50_to_125.qip
+set_global_assignment -name QIP_FILE lvds/lvds_5_tx.qip
+set_global_assignment -name QIP_FILE lvds/lvds_5_rx.qip
+set_global_assignment -name VERILOG_FILE CVGX_1024_00_M1AFE.v
+set_global_assignment -name SDC_FILE CVGX_1024_00_M1AFE.SDC
+set_global_assignment -name QIP_FILE pll/pll_50_to_16.qip
 set_global_assignment -name QIP_FILE pll/lvds_6x_125Mbps_pll.qip
 set_global_assignment -name SIP_FILE pll/lvds_6x_125Mbps_pll.sip
