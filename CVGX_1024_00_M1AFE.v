@@ -329,13 +329,13 @@ pll_50_to_16 config_pll(
 
 // LVDS connections
 lvds_6x_50MSps_pll ldvs_pll(
-                      .refclk( adc_lvds_clk ),
-                      .rst( cvconfigpll_reset ),
-                      .outclk_0( lvds_serial_clock ),
-                      .outclk_1( lvds_enable_clock ),
-                      .outclk_2( lvds_data_clock ),
-                      .locked( lvdspll_lock )
-                    );
+                     .refclk( adc_lvds_clk ),
+                     .rst( cvconfigpll_reset ),
+                     .outclk_0( lvds_serial_clock ),
+                     .outclk_1( lvds_enable_clock ),
+                     .outclk_2( lvds_data_clock ),
+                     .locked( lvdspll_lock )
+                   );
 
 lvds_ext_5_rx lvds_ext_5_rx_inst (
                 .rx_enable ( lvds_enable_clock ),
@@ -353,11 +353,13 @@ lvds_ext_5_tx lvds_ext_5_tx_inst (
               );
 
 // Acts like loopback
-always @( posedge lvds_data_clock )
-begin
-  adc_parallel_q <= adc_parallel_out;
-end
-assign dac_parallel_in = adc_parallel_q;
+parallel_data_register loopback_storage
+              (
+                .clk( lvds_data_clock ),
+                .reset_n( lvdspll_lock ),
+                .parallel_in( adc_parallel_out ),
+                .parallel_out( dac_parallel_in )
+              );
 
 // Instantiate configuration controller
 afe_configure configuration_master
