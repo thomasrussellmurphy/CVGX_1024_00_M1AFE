@@ -22,7 +22,7 @@ module  lvds_6x_50MSps_pll_0002(
 
 	altera_pll #(
 		.fractional_vco_multiplier("false"),
-		.reference_clock_frequency("50.0 MHz"),
+		.reference_clock_frequency("150.0 MHz"),
 		.operation_mode("lvds"),
 		.number_of_clocks(3),
 		.output_clock_frequency0("300.000000 MHz"),
