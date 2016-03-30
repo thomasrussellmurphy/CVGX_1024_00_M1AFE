@@ -67,3 +67,7 @@ CONFIG131 has override control and data encoding options
 0x33A, set value 0x82
 MASTER_OVERRIDE_RX = 1
 TWOWIRE_RX = 1
+
+CONFIG132 has ADC digital output strength controls
+0x23A, set value 0x08
+CLK_STR_RX = 1, high output power

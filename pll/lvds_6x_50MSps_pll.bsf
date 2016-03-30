@@ -22,7 +22,7 @@ agreement for further details.
 (header "symbol" (version "1.1"))
 (symbol
 	(rect 0 0 160 224)
-	(text "lvds_6x_125Mbps_pll" (rect 18 -1 104 11)(font "Arial" (font_size 10)))
+	(text "lvds_6x_50MSps_pll" (rect 20 -1 103 11)(font "Arial" (font_size 10)))
 	(text "inst" (rect 8 208 20 220)(font "Arial" ))
 	(port
 		(pt 0 72)

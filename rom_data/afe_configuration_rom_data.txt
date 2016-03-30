@@ -28,6 +28,8 @@
 130C04
 // Set MASTER_OVERRIDE_RX and Rx interface to two-wire
 133A82
+// Set CLK_STR_RX to boost ADC output clock strength
+123A08
 
 // Set read mode on configuration registers bank 0x300
 130001

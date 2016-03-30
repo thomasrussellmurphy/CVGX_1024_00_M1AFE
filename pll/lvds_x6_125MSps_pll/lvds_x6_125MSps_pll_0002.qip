@@ -1,0 +1,4 @@
+set_instance_assignment -name PLL_COMPENSATION_MODE "LVDS" -to "*lvds_x6_125MSps_pll_0002*|altera_pll:altera_pll_i*|*"
+ 
+set_instance_assignment -name PLL_AUTO_RESET ON -to "*lvds_x6_125MSps_pll_0002*|altera_pll:altera_pll_i*|*"
+set_instance_assignment -name PLL_BANDWIDTH_PRESET AUTO -to "*lvds_x6_125MSps_pll_0002*|altera_pll:altera_pll_i*|*"

@@ -328,7 +328,7 @@ pll_50_to_16 config_pll(
              );
 
 // LVDS connections
-lvds_6x_125Mbps_pll ldvs_pll(
+lvds_6x_50MSps_pll ldvs_pll(
                       .refclk( adc_lvds_clk ),
                       .rst( cvconfigpll_reset ),
                       .outclk_0( lvds_serial_clock ),

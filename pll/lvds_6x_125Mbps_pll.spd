@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<simPackage>
- <file path="lvds_6x_125Mbps_pll_sim/lvds_6x_125Mbps_pll.vo" type="VERILOG" />
- <topLevel name="lvds_6x_125Mbps_pll" />
- <deviceFamily name="cyclonev" />
-</simPackage>

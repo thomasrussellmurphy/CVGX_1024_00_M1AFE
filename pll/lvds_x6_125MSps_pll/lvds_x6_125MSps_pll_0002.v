@@ -1,5 +1,5 @@
 `timescale 1ns/10ps
-module  lvds_6x_125Mbps_pll_0002(
+module  lvds_x6_125MSps_pll_0002(
 
 	// interface 'refclk'
 	input wire refclk,
