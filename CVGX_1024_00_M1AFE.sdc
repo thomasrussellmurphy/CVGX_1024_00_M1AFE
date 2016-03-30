@@ -12,7 +12,7 @@ create_clock -period 20 [get_ports CLOCK_50_B6A]
 create_clock -period 20 [get_ports CLOCK_50_B7A]
 create_clock -period 20 [get_ports CLOCK_50_B8A]
 
-create_clock -period 2.6667 [get_ports ADC_DCLKOUT_P]
+create_clock -period 6.6667 [get_ports ADC_DCLKOUT_P]
 
 #**************************************************************
 # Create Generated Clock
