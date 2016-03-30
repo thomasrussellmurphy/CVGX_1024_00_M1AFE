@@ -266,11 +266,12 @@ assign LEDG[ 0 ] = cvdatapll_lock;
 assign LEDG[ 1 ] = cvconfigpll_lock;
 assign LEDG[ 2 ] = lvdspll_lock;
 
-// Assigning clock to reworked CDCE footprint that will go to the AFE
+// Output just to ensure usage of 125MHz clock
 assign HSMC_CLKOUT0 = cvdatapll_clk125;
 
-assign FPGA_REF_CLK_P = cvdatapll_clk125;
-assign FPGA_REF_CLK_N = ~cvdatapll_clk125;
+// Assigning clock to reworked CDCE footprint that will go to the AFE
+assign FPGA_REF_CLK_P = CLOCK_50_B7A;
+assign FPGA_REF_CLK_N = ~CLOCK_50_B7A;
 
 // Assigning configuration clock outputs, even if they aren't used
 assign AFE_SCLK = cvconfigpll_clk16;
