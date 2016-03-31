@@ -30,6 +30,8 @@
 133A82
 // Set CLK_STR_RX to boost ADC output clock strength
 123A08
+// Sets sync-check pattern: 111000111000 in 2-wire mode
+133707
 
 // Set read mode on configuration registers bank 0x300
 130001
