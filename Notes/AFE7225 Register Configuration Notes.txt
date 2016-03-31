@@ -62,6 +62,8 @@ CONFIG128 has output stream modification for Rx ADC output
 Sets no output pattern, normal operation
 0x337, set value 0x07
 Sets sync-check pattern: 111000111000 in 2-wire mode
+0x377, set value 0x06
+Sets deskew pattern: 010101 010101 as data output
 
 CONFIG131 has override control and data encoding options
 0x33A, set value 0x82
