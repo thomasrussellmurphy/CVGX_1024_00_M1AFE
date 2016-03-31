@@ -84,7 +84,7 @@ module lvds_5_tx (
 		ALTLVDS_TX_component.inclock_boost = 0,
 		ALTLVDS_TX_component.inclock_data_alignment = "EDGE_ALIGNED",
 		ALTLVDS_TX_component.inclock_period = 8000,
-		ALTLVDS_TX_component.inclock_phase_shift = 0,
+		ALTLVDS_TX_component.inclock_phase_shift = 4000,
 		ALTLVDS_TX_component.intended_device_family = "Cyclone V",
 		ALTLVDS_TX_component.lpm_hint = "CBX_MODULE_PREFIX=lvds_5_tx",
 		ALTLVDS_TX_component.lpm_type = "altlvds_tx",
@@ -94,14 +94,14 @@ module lvds_5_tx (
 		ALTLVDS_TX_component.outclock_divide_by = 2,
 		ALTLVDS_TX_component.outclock_duty_cycle = 50,
 		ALTLVDS_TX_component.outclock_multiply_by = 1,
-		ALTLVDS_TX_component.outclock_phase_shift = 334,
+		ALTLVDS_TX_component.outclock_phase_shift = 667,
 		ALTLVDS_TX_component.outclock_resource = "Dual-Regional clock",
 		ALTLVDS_TX_component.output_data_rate = 750,
 		ALTLVDS_TX_component.pll_compensation_mode = "AUTO",
 		ALTLVDS_TX_component.pll_self_reset_on_loss_lock = "OFF",
 		ALTLVDS_TX_component.preemphasis_setting = 0,
 		ALTLVDS_TX_component.refclk_frequency = "125.000000 MHz",
-		ALTLVDS_TX_component.registered_input = "TX_CORECLK",
+		ALTLVDS_TX_component.registered_input = "TX_CLKIN",
 		ALTLVDS_TX_component.use_external_pll = "OFF",
 		ALTLVDS_TX_component.use_no_phase_shift = "ON",
 		ALTLVDS_TX_component.vod_setting = 0,
@@ -114,7 +114,7 @@ endmodule
 // CNX file retrieval info
 // ============================================================
 // Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
-// Retrieval info: PRIVATE: CNX_CLOCK_CHOICES STRING "tx_coreclock"
+// Retrieval info: PRIVATE: CNX_CLOCK_CHOICES STRING "tx_inclock"
 // Retrieval info: PRIVATE: CNX_CLOCK_MODE NUMERIC "0"
 // Retrieval info: PRIVATE: CNX_COMMON_PLL NUMERIC "1"
 // Retrieval info: PRIVATE: CNX_DATA_RATE STRING "750.0"
@@ -135,8 +135,8 @@ endmodule
 // Retrieval info: PRIVATE: CNX_USE_TX_OUT_PHASE NUMERIC "1"
 // Retrieval info: PRIVATE: INTENDED_DEVICE_FAMILY STRING "Cyclone V"
 // Retrieval info: PRIVATE: pCNX_OUTCLK_ALIGN STRING "UNUSED"
-// Retrieval info: PRIVATE: pINCLOCK_PHASE_SHIFT STRING "0.00"
-// Retrieval info: PRIVATE: pOUTCLOCK_PHASE_SHIFT STRING "45.00"
+// Retrieval info: PRIVATE: pINCLOCK_PHASE_SHIFT STRING "180.00"
+// Retrieval info: PRIVATE: pOUTCLOCK_PHASE_SHIFT STRING "90.00"
 // Retrieval info: CONSTANT: CENTER_ALIGN_MSB STRING "UNUSED"
 // Retrieval info: CONSTANT: COMMON_RX_TX_PLL STRING "ON"
 // Retrieval info: CONSTANT: CORECLOCK_DIVIDE_BY NUMERIC "1"
@@ -149,7 +149,7 @@ endmodule
 // Retrieval info: CONSTANT: INCLOCK_BOOST NUMERIC "0"
 // Retrieval info: CONSTANT: INCLOCK_DATA_ALIGNMENT STRING "EDGE_ALIGNED"
 // Retrieval info: CONSTANT: INCLOCK_PERIOD NUMERIC "8000"
-// Retrieval info: CONSTANT: INCLOCK_PHASE_SHIFT NUMERIC "0"
+// Retrieval info: CONSTANT: INCLOCK_PHASE_SHIFT NUMERIC "4000"
 // Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone V"
 // Retrieval info: CONSTANT: LPM_HINT STRING "UNUSED"
 // Retrieval info: CONSTANT: LPM_TYPE STRING "altlvds_tx"
@@ -159,14 +159,14 @@ endmodule
 // Retrieval info: CONSTANT: OUTCLOCK_DIVIDE_BY NUMERIC "2"
 // Retrieval info: CONSTANT: OUTCLOCK_DUTY_CYCLE NUMERIC "50"
 // Retrieval info: CONSTANT: OUTCLOCK_MULTIPLY_BY NUMERIC "1"
-// Retrieval info: CONSTANT: OUTCLOCK_PHASE_SHIFT NUMERIC "334"
+// Retrieval info: CONSTANT: OUTCLOCK_PHASE_SHIFT NUMERIC "667"
 // Retrieval info: CONSTANT: OUTCLOCK_RESOURCE STRING "Dual-Regional clock"
 // Retrieval info: CONSTANT: OUTPUT_DATA_RATE NUMERIC "750"
 // Retrieval info: CONSTANT: PLL_COMPENSATION_MODE STRING "AUTO"
 // Retrieval info: CONSTANT: PLL_SELF_RESET_ON_LOSS_LOCK STRING "OFF"
 // Retrieval info: CONSTANT: PREEMPHASIS_SETTING NUMERIC "0"
 // Retrieval info: CONSTANT: REFCLK_FREQUENCY STRING "125.000000 MHz"
-// Retrieval info: CONSTANT: REGISTERED_INPUT STRING "TX_CORECLK"
+// Retrieval info: CONSTANT: REGISTERED_INPUT STRING "TX_CLKIN"
 // Retrieval info: CONSTANT: USE_EXTERNAL_PLL STRING "OFF"
 // Retrieval info: CONSTANT: USE_NO_PHASE_SHIFT STRING "ON"
 // Retrieval info: CONSTANT: VOD_SETTING NUMERIC "0"

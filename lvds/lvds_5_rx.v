@@ -115,8 +115,8 @@ module lvds_5_rx (
 		ALTLVDS_RX_component.implement_in_les = "OFF",
 		ALTLVDS_RX_component.inclock_boost = 0,
 		ALTLVDS_RX_component.inclock_data_alignment = "EDGE_ALIGNED",
-		ALTLVDS_RX_component.inclock_period = 8000,
-		ALTLVDS_RX_component.inclock_phase_shift = 0,
+		ALTLVDS_RX_component.inclock_period = 2667,
+		ALTLVDS_RX_component.inclock_phase_shift = 1334,
 		ALTLVDS_RX_component.input_data_rate = 750,
 		ALTLVDS_RX_component.intended_device_family = "Cyclone V",
 		ALTLVDS_RX_component.lose_lock_on_one_change = "UNUSED",
@@ -128,7 +128,7 @@ module lvds_5_rx (
 		ALTLVDS_RX_component.pll_self_reset_on_loss_lock = "UNUSED",
 		ALTLVDS_RX_component.port_rx_channel_data_align = "PORT_UNUSED",
 		ALTLVDS_RX_component.port_rx_data_align = "PORT_UNUSED",
-		ALTLVDS_RX_component.refclk_frequency = "125.000000 MHz",
+		ALTLVDS_RX_component.refclk_frequency = "375.000000 MHz",
 		ALTLVDS_RX_component.registered_data_align_input = "UNUSED",
 		ALTLVDS_RX_component.registered_output = "ON",
 		ALTLVDS_RX_component.reset_fifo_at_first_lock = "UNUSED",
@@ -165,10 +165,10 @@ endmodule
 // Retrieval info: PRIVATE: Num_Channel NUMERIC "5"
 // Retrieval info: PRIVATE: Outclock_Divide_By NUMERIC "0"
 // Retrieval info: PRIVATE: pCNX_OUTCLK_ALIGN NUMERIC "0"
-// Retrieval info: PRIVATE: pINCLOCK_PHASE_SHIFT STRING "0.00"
+// Retrieval info: PRIVATE: pINCLOCK_PHASE_SHIFT STRING "180.00"
 // Retrieval info: PRIVATE: PLL_Enable NUMERIC "0"
-// Retrieval info: PRIVATE: PLL_Freq STRING "125.000000"
-// Retrieval info: PRIVATE: PLL_Period STRING "8.000"
+// Retrieval info: PRIVATE: PLL_Freq STRING "375.000000"
+// Retrieval info: PRIVATE: PLL_Period STRING "2.667"
 // Retrieval info: PRIVATE: pOUTCLOCK_PHASE_SHIFT NUMERIC "0"
 // Retrieval info: PRIVATE: Reg_InOut NUMERIC "1"
 // Retrieval info: PRIVATE: Use_Cda_Reset NUMERIC "0"
@@ -200,8 +200,8 @@ endmodule
 // Retrieval info: CONSTANT: IMPLEMENT_IN_LES STRING "OFF"
 // Retrieval info: CONSTANT: INCLOCK_BOOST NUMERIC "0"
 // Retrieval info: CONSTANT: INCLOCK_DATA_ALIGNMENT STRING "EDGE_ALIGNED"
-// Retrieval info: CONSTANT: INCLOCK_PERIOD NUMERIC "8000"
-// Retrieval info: CONSTANT: INCLOCK_PHASE_SHIFT NUMERIC "0"
+// Retrieval info: CONSTANT: INCLOCK_PERIOD NUMERIC "2667"
+// Retrieval info: CONSTANT: INCLOCK_PHASE_SHIFT NUMERIC "1334"
 // Retrieval info: CONSTANT: INPUT_DATA_RATE NUMERIC "750"
 // Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone V"
 // Retrieval info: CONSTANT: LOSE_LOCK_ON_ONE_CHANGE STRING "UNUSED"
@@ -213,7 +213,7 @@ endmodule
 // Retrieval info: CONSTANT: PLL_SELF_RESET_ON_LOSS_LOCK STRING "UNUSED"
 // Retrieval info: CONSTANT: PORT_RX_CHANNEL_DATA_ALIGN STRING "PORT_UNUSED"
 // Retrieval info: CONSTANT: PORT_RX_DATA_ALIGN STRING "PORT_UNUSED"
-// Retrieval info: CONSTANT: REFCLK_FREQUENCY STRING "125.000000 MHz"
+// Retrieval info: CONSTANT: REFCLK_FREQUENCY STRING "375.000000 MHz"
 // Retrieval info: CONSTANT: REGISTERED_DATA_ALIGN_INPUT STRING "UNUSED"
 // Retrieval info: CONSTANT: REGISTERED_OUTPUT STRING "ON"
 // Retrieval info: CONSTANT: RESET_FIFO_AT_FIRST_LOCK STRING "UNUSED"
