@@ -28,8 +28,6 @@
 130C04
 // Set MASTER_OVERRIDE_RX and Rx interface to two-wire
 133A82
-// Set CLK_STR_RX to boost ADC output clock strength
-123A08
 // Sets deskew pattern: 010101 010101 as data output
 133706
 
