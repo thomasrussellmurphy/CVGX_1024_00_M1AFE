@@ -31,6 +31,11 @@
 // Sets deskew pattern: 010101 010101 as data output
 133706
 
+// Power up part of ADC chain, leaving actual ADCs in mid-scale, low power state
+11671E
+
+// Should now wait to gain LVDS sync in high-speed domain
+
 // Power up whole transmit chain and keep FIFO enabled
 110300
 // Power up whole receive chain
