@@ -31,15 +31,6 @@
 // Sets deskew pattern: 010101 010101 as data output
 133706
 
-// Set read mode on configuration registers bank 0x300
-130001
-// Read out CONFIG125, 0x30B (wrote 0x80)
-130B00
-// Read out CONFIG131, 0x33A (wrote 0x82)
-133A00
-// Exit read mode on bank 0x300
-130001
-
 // Power up whole transmit chain and keep FIFO enabled
 110300
 // Power up whole receive chain
