@@ -3,14 +3,16 @@ module afe_command_rom
        (
          input clk, reset_n,
          input [ 7: 0 ] address,
-         output [ 23: 0 ] command
+         output [ 3: 0 ] controller_command,
+         output [ 19: 0 ] afe_shift_data
        );
 
 // Memory variable
 reg [ 23: 0 ] rom[ 255: 0 ];
 
 reg [ 23: 0 ] command_reg;
-assign command = command_reg;
+assign controller_command = command_reg[ 23: 20 ];
+assign afe_shift_data = command_reg[ 19: 0 ];
 
 // ROM initialization
 initial

@@ -19,7 +19,7 @@ wire command_transactions_done;
 assign configure_done = command_transactions_done;
 assign pdn = ~configure_done;
 
-wire [ 23: 0 ] rom_command;
+wire [ 3: 0 ] controller_command;
 wire [ 19: 0 ] afe_command;
 wire [ 7: 0 ] rom_address;
 
@@ -45,9 +45,8 @@ afe_command_controller command_controller
                          .reset_n( reset_n ),
                          .enable( reset_done ),
                          .serial_ready( transaction_done ),
-                         .controller_command( rom_command ),
+                         .command( controller_command ),
                          .rom_address( rom_address ),
-                         .afe_command( afe_command ),
                          .start_transaction( start_transaction ),
                          .done( command_transactions_done )
                        );
@@ -57,7 +56,8 @@ afe_command_rom command_rom
                   .clk( clk ),
                   .reset_n( reset_n ),
                   .address( rom_address ),
-                  .command( rom_command )
+                  .controller_command( controller_command ),
+                  .afe_shift_data( afe_command )
                 );
 
 afe_serial_out serial_out
