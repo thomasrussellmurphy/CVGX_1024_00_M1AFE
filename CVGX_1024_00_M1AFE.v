@@ -354,12 +354,12 @@ lvds_ext_5_tx lvds_ext_5_tx_inst (
 
 // Acts like loopback
 parallel_data_register loopback_storage
-              (
-                .clk( lvds_data_clock ),
-                .reset_n( lvdspll_lock ),
-                .parallel_in( adc_parallel_out ),
-                .parallel_out( dac_parallel_in )
-              );
+                       (
+                         .clk( lvds_data_clock ),
+                         .reset_n( lvdspll_lock ),
+                         .parallel_in( adc_parallel_out ),
+                         .parallel_out( dac_parallel_in )
+                       );
 
 // Instantiate configuration controller
 afe_configure configuration_master
