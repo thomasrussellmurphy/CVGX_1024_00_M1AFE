@@ -254,7 +254,8 @@ wire cvconfigpll_reset;
 // For LVDS internal PLL
 wire lvds_serial_clock;
 wire lvds_enable_clock;
-wire lvds_data_clock;
+wire lvds_core_clock;
+wire lvds_frame_clock;
 wire lvdspll_lock;
 
 // For AFE config indication
@@ -297,17 +298,17 @@ assign adc_aggregate_lvds = {
 assign adc_lvds_clk = ADC_DCLKOUT_P;
 
 // DAC LVDS interfacing
-wire [ 4: 0 ] dac_aggregate_lvds;
+wire [ 3: 0 ] dac_aggregate_lvds;
 wire dac_lvds_clk;
-wire [ 29: 0 ] dac_parallel_in;
+wire [ 23: 0 ] dac_parallel_in;
 
 assign {
     DACB_DATA1_P,
     DACB_DATA0_P,
     DACA_DATA1_P,
-    DACA_DATA0_P,
-    DAC_FCLKIN_P
+    DACA_DATA0_P
   } = dac_aggregate_lvds;
+assign DAC_FCLKIN_P = lvds_frame_clock;
 assign DAC_DCLKIN_P = dac_lvds_clk;
 
 //=======================================================
@@ -333,7 +334,8 @@ lvds_6x_50MSps_pll ldvs_pll(
                      .rst( cvconfigpll_reset ),
                      .outclk_0( lvds_serial_clock ),
                      .outclk_1( lvds_enable_clock ),
-                     .outclk_2( lvds_data_clock ),
+                     .outclk_2( lvds_core_clock ),
+                     .outclk_3(lvds_frame_clock),
                      .locked( lvdspll_lock )
                    );
 
@@ -344,7 +346,7 @@ lvds_ext_5_rx lvds_ext_5_rx_inst (
                 .rx_out ( adc_parallel_out )
               );
 
-lvds_ext_5_tx lvds_ext_5_tx_inst (
+lvds_ext_4_tx lvds_ext_4_tx_inst (
                 .tx_enable ( lvds_enable_clock ),
                 .tx_in ( dac_parallel_in ),
                 .tx_inclock ( lvds_serial_clock ),
@@ -355,9 +357,9 @@ lvds_ext_5_tx lvds_ext_5_tx_inst (
 // Acts like loopback
 parallel_data_register loopback_storage
                        (
-                         .clk( lvds_data_clock ),
+                         .clk( lvds_core_clock ),
                          .reset_n( lvdspll_lock ),
-                         .parallel_in( adc_parallel_out ),
+                         .parallel_in( adc_parallel_out[ 29: 6 ] ),
                          .parallel_out( dac_parallel_in )
                        );
 
